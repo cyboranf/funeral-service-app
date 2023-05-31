@@ -4,19 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Church extends Model
 {
     protected $fillable = [
         'name',
-        'surname',
-        'age',
+        'address',
         'city',
     ];
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     public function funerals()
     {
