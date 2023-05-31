@@ -9,7 +9,6 @@ class Church extends Model
     protected $fillable = [
         'name',
         'address',
-        'city',
     ];
 
     public function funerals()

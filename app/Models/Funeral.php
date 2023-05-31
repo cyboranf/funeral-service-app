@@ -9,6 +9,7 @@ class Funeral extends Model
     protected $fillable = [
         'deceased_name',
         'deceased_age',
+        'user_id',
         'coffin_id',
         'church_id',
         'priest_id',

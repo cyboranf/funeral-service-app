@@ -11,6 +11,7 @@ class User extends Model
         'surname',
         'age',
         'city',
+        'role_id',
     ];
 
     public function role()
