@@ -9,10 +9,12 @@ class User extends Model
     protected $fillable = [
         'name',
         'surname',
-        'age',
+        'birthday',
         'city',
         'role_id',
     ];
+
+    protected $dates = ['birthday'];
 
     public function role()
     {

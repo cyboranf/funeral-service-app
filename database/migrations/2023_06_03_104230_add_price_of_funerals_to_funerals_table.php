@@ -9,14 +9,14 @@ class AddPriceOfFuneralsToFuneralsTable extends Migration
     public function up()
     {
         Schema::table('funerals', function (Blueprint $table) {
-            $table->decimal('priceOfFunerals', 8, 2);
+            $table->decimal('price', 8, 2);
         });
     }
 
     public function down()
     {
         Schema::table('funerals', function (Blueprint $table) {
-            $table->dropColumn('priceOfFunerals');
+            $table->dropColumn('price');
         });
     }
 }
