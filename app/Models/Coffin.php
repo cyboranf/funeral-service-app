@@ -10,6 +10,7 @@ class Coffin extends Model
         'material',
         'color',
         'size',
+        'priceOfCoffins',
     ];
 
     public function funerals()
