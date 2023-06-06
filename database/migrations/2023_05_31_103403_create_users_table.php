@@ -12,14 +12,15 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->integer('age');
+            // $table->integer('age')->nullable();
+            $table->date('birthday');
             $table->string('city');
             $table->unsignedBigInteger('role_id');
             $table->timestamps();
-
             $table->foreign('role_id')->references('id')->on('roles');
         });
     }
+
 
     public function down()
     {
