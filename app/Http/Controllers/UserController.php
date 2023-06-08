@@ -36,8 +36,9 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect()->route('users.index')->with('success', 'Użytkownik został dodany.');
+        return redirect('/')->with('success', 'Użytkownik został dodany.');
     }
+
 
     public function show(User $user)
     {

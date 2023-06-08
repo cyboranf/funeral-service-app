@@ -37,3 +37,6 @@ Route::post('register', [UserController::class, 'store']);
     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
