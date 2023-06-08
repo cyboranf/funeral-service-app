@@ -1,29 +1,97 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Funerals List</title>
+    <style>
+        .funerals-table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .funerals-table th,
+        .funerals-table td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        .funerals-table-header {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .funerals-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" /></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
+                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="#">Logout</a></li>
+                    {{-- {{ route('logout') }} --}}
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <h1>Funerals List</h1>
+    </section>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Pogrzeby</h1>
-
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                <table class="table">
-                    <thead>
-                        <tr>
+                <a href="{{ route('funerals.create') }}" class="btn btn-primary">Add new Funeral</a>
+                <table class="table mt-3 funerals-table">                    <thead>
+                    <tr class="funerals-table-header">
                             <th>ID</th>
-                            <th>Zmarły</th>
-                            <th>Wiek</th>
-                            <th>Użytkownik</th>
-                            <th>Trumna</th>
-                            <th>Kościół</th>
-                            <th>Ksiądz</th>
-                            <th>Cena</th>
-                            <th>Akcje</th>
+                            <th>Deceased</th>
+                            <th>Age</th>
+                            <th>User</th>
+                            <th>Coffin</th>
+                            <th>Church</th>
+                            <th>Priest</th>
+                            <th>Price</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,21 +106,33 @@
                                 <td>{{ $funeral->priest->name ?? 'Brak' }}</td>
                                 <td>{{ $funeral->price }}</td>
                                 <td>
-                                    <a href="{{ route('funerals.show', $funeral) }}" class="btn btn-primary">Pokaż</a>
-                                    <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-warning">Edytuj</a>
+                                    <a href="{{ route('funerals.show', $funeral) }}" class="btn btn-primary">Details</a>
+                                    <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-warning">Edit</a>
                                     <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten pogrzeb?')">Usuń</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten pogrzeb?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
-                <a href="{{ route('funerals.create') }}" class="btn btn-success">Dodaj Pogrzeb</a>
             </div>
         </div>
     </div>
-@endsection
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+
+</html>
