@@ -9,7 +9,6 @@ class AddPriceOfCoffinsToCoffinsTable extends Migration
     public function up()
     {
         Schema::table('coffins', function (Blueprint $table) {
-            $table->dropColumn('priceOfCoffins');
             $table->decimal('price', 8, 2);
         });
     }
@@ -18,7 +17,6 @@ class AddPriceOfCoffinsToCoffinsTable extends Migration
     {
         Schema::table('coffins', function (Blueprint $table) {
             $table->dropColumn('price');
-            $table->decimal('priceOfCoffins', 8, 2);
         });
     }
 }

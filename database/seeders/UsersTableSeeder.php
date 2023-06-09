@@ -19,7 +19,10 @@ class UsersTableSeeder extends Seeder
                 'birthday' => $faker->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d'),
                 'city' => $faker->city,
                 'role_id' => Role::all()->random()->id,
+                'email' => $faker->unique()->safeEmail, // Dodanie generowania unikalnych e-maili
+                'password' => bcrypt('password'), // Dodanie hasła
             ]);
         }
     }
+
 }
