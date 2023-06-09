@@ -13,19 +13,21 @@
     <title>Priests List</title>
     <style>
         .user-table {
+            background-color: #f9f9f9;
             border-collapse: collapse;
-            width: 100%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 100%;
         }
 
-        .user-table th, .user-table td {
+        .user-table th,
+        .user-table td {
+            padding: 12px 8px;
             text-align: left;
-            padding: 8px;
         }
 
         .user-table-header {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #dcdcdc;
+            color: #333333;
         }
 
         .user-table tr:nth-child(even) {
@@ -35,6 +37,7 @@
         .btn {
             border-radius: 5px;
             padding: 5px 10px;
+            margin-right: 5px;
         }
 
         .btn-primary {
@@ -50,6 +53,10 @@
         .btn-danger {
             background-color: #f44336;
             color: white;
+        }
+
+        .full-width {
+            width: 100%;
         }
     </style>
 </head>
@@ -96,12 +103,12 @@
                                 <td>{{ $priest->surname }}</td>
                                 <td>{{ $priest->religion }}</td>
                                 <td>
-                                    <a href="{{ route('priests.show', $priest) }}" class="btn btn-info btn-sm">Details</a>
-                                    <a href="{{ route('priests.edit', $priest) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('priests.destroy', $priest) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('priests.show', $priest) }}" class="btn btn-info">Details</a>
+                                    <a href="{{ route('priests.edit', $priest) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('priests.destroy', $priest) }}" method="POST" style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this priest?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>

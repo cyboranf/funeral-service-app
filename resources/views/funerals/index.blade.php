@@ -13,20 +13,21 @@
     <title>Funerals List</title>
     <style>
         .funerals-table {
+            background-color: #f9f9f9;
             border-collapse: collapse;
-            width: 100%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 100%;
         }
 
         .funerals-table th,
         .funerals-table td {
+            padding: 12px 8px;
             text-align: left;
-            padding: 8px;
         }
 
         .funerals-table-header {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #dcdcdc;
+            color: #333333;
         }
 
         .funerals-table tr:nth-child(even) {
@@ -36,6 +37,7 @@
         .btn {
             border-radius: 5px;
             padding: 5px 10px;
+            margin-right: 5px;
         }
 
         .btn-primary {
@@ -51,6 +53,19 @@
         .btn-danger {
             background-color: #f44336;
             color: white;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-group .btn {
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -81,8 +96,9 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('funerals.create') }}" class="btn btn-primary">Add new Funeral</a>
-                <table class="table mt-3 funerals-table">                    <thead>
-                    <tr class="funerals-table-header">
+                <table class="table mt-3 user-table full-width">
+                    <thead>
+                        <tr class="funerals-table-header">
                             <th>ID</th>
                             <th>Deceased</th>
                             <th>Age</th>
@@ -106,13 +122,15 @@
                                 <td>{{ $funeral->priest->name ?? 'Brak' }}</td>
                                 <td>{{ $funeral->price }}</td>
                                 <td>
-                                    <a href="{{ route('funerals.show', $funeral) }}" class="btn btn-primary">Details</a>
-                                    <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten pogrzeb?')">Delete</button>
-                                    </form>
+                                    <div class="btn-group">
+                                        <a href="{{ route('funerals.show', $funeral) }}" class="btn btn-info btn-sm">Details</a>
+                                        <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this funeral?')">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

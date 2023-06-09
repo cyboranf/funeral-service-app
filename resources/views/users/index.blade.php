@@ -13,19 +13,21 @@
     <title>User List</title>
     <style>
         .user-table {
+            background-color: #f9f9f9;
             border-collapse: collapse;
-            width: 100%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 100%;
         }
 
-        .user-table th, .user-table td {
+        .user-table th,
+        .user-table td {
+            padding: 12px 8px;
             text-align: left;
-            padding: 8px;
         }
 
         .user-table-header {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #dcdcdc;
+            color: #333333;
         }
 
         .user-table tr:nth-child(even) {
@@ -35,6 +37,7 @@
         .btn {
             border-radius: 5px;
             padding: 5px 10px;
+            margin-right: 5px;
         }
 
         .btn-primary {
@@ -50,6 +53,10 @@
         .btn-danger {
             background-color: #f44336;
             color: white;
+        }
+
+        .full-width {
+            width: 100%;
         }
     </style>
 </head>
@@ -76,44 +83,42 @@
         <h1>Users List</h1>
     </section>
 
-    <div class="about-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user</a>
-                    <table class="table mt-3 user-table">
-                        <thead>
-                            <tr class="user-table-header">
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Birthday</th>
-                                <th>City</th>
-                                <th>Role</th>
-                                <th>Actions</th>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user</a>
+                <table class="table mt-3 user-table full-width">
+                    <thead>
+                        <tr class="user-table-header">
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Birthday</th>
+                            <th>City</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->surname }}</td>
+                                <td>{{ $user->birthday }}</td>
+                                <td>{{ $user->city }}</td>
+                                <td>{{ $user->role->name }}</td>
+                                <td>
+                                    <a href="{{ route('users.show', $user) }}" class="btn btn-info">Details</a>
+                                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
-                                <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->surname }}</td>
-                                    <td>{{ optional($user->birthday)->format('Y-m-d') }}</td>
-                                    <td>{{ $user->city }}</td>
-                                    <td>{{ $user->role->name }}</td>
-                                    <td>
-                                        <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm">Details</a>
-                                        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -8,26 +8,26 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Coffins List</title>
     <style>
         .coffins-table {
+            background-color: #f9f9f9;
             border-collapse: collapse;
-            width: 100%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 100%;
         }
 
         .coffins-table th,
         .coffins-table td {
+            padding: 12px 8px;
             text-align: left;
-            padding: 8px;
         }
 
         .coffins-table-header {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #dcdcdc;
+            color: #333333;
         }
 
         .coffins-table tr:nth-child(even) {
@@ -53,6 +53,10 @@
             background-color: #f44336;
             color: white;
         }
+
+        .full-width {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -75,14 +79,14 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>Coffin List</h1>
+        <h1>Coffins List</h1>
     </section>
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('coffins.create') }}" class="btn btn-primary">Add new coffin</a>
-                <table class="table mt-3 coffins-table">
+                <table class="table mt-3 user-table full-width">
                     <thead>
                         <tr class="coffins-table-header">
                             <th>ID</th>
@@ -104,11 +108,10 @@
                             <td>
                                 <a href="{{ route('coffins.show', $coffin) }}" class="btn btn-info btn-sm">Details</a>
                                 <a href="{{ route('coffins.edit', $coffin) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('coffins.destroy', $coffin) }}" method="POST"
-                                    class="d-inline">
+                                <form action="{{ route('coffins.destroy', $coffin) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę trumnę?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
