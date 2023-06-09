@@ -39,6 +39,27 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Użytkownik został dodany.');
     }
 
+    public function register(Request $request)
+{
+    $data = $request->validate([
+        'name' => 'required',
+        'surname' => 'required',
+        'birthday' => 'required',
+        'city' => 'required',
+        'role_id' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8',
+    ]);
+
+    $data['birthday'] = Carbon::parse($data['birthday']);
+    $data['password'] = bcrypt($data['password']); // Hashowanie hasła
+
+    User::create($data);
+
+    return redirect('/')->with('success', 'Użytkownik został dodany.');
+}
+
+
 
     public function show(User $user)
     {
