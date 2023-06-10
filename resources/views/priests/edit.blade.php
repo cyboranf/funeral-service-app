@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Priest Edit</title>
     <style>
-        .user-edit-container {
+        .user-register-container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
@@ -21,21 +21,21 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .user-edit-container form {
+        .user-register-container form {
             margin-top: 20px;
         }
 
-        .user-edit-container form .form-group {
+        .user-register-container form .form-group {
             margin-bottom: 20px;
         }
 
-        .user-edit-container form label {
+        .user-register-container form label {
             font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .user-edit-container form input,
-        .user-edit-container form select {
+        .user-register-container form input,
+        .user-register-container form select {
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -43,28 +43,33 @@
             border: 1px solid #ccc;
         }
 
-        .user-edit-container .action-buttons {
+        .user-register-container .action-buttons {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        .user-edit-container .action-buttons .btn {
+        .user-register-container .action-buttons .btn {
             margin: 0 5px;
         }
+        .btn {
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #2196F3;
             color: white;
         }
 
         .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
+            background-color: #f44336;
             color: white;
         }
     </style>
@@ -88,30 +93,28 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="user-edit-container">
-                    <form action="{{ route('priests.update', $priest) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="name">First name:</label>
-                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $priest->name) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="surname">Last name:</label>
-                            <input type="text" name="surname" id="surname" class="form-control" value="{{ old('surname', $priest->surname) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="religion">Religion:</label>
-                            <input type="text" name="religion" id="religion" class="form-control" value="{{ old('religion', $priest->religion) }}" required>
-                        </div>
-                        <div class="action-buttons">
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                            <a href="{{ route('priests.index') }}" class="btn btn-secondary">Cancel</a>
-                        </div>
-                    </form>
-                </div>
+        <div class="col-md-12">
+            <div class="user-edit-container">
+                <form action="{{ route('priests.update', $priest) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="name">First name:</label>
+                        <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $priest->name) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Last name:</label>
+                        <input type="text" name="surname" id="surname" class="form-control" value="{{ old('surname', $priest->surname) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="religion">Religion:</label>
+                        <input type="text" name="religion" id="religion" class="form-control" value="{{ old('religion', $priest->religion) }}" required>
+                    </div>
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-info">Edit</button>
+                        <a href="{{ route('priests.index') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
