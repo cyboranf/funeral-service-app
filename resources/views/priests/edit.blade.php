@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Priest Edit</title>
     <style>
-        .user-register-container {
+        .user-edit-container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
@@ -21,21 +21,21 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .user-register-container form {
+        .user-edit-container form {
             margin-top: 20px;
         }
 
-        .user-register-container form .form-group {
+        .user-edit-container form .form-group {
             margin-bottom: 20px;
         }
 
-        .user-register-container form label {
+        .user-edit-container form label {
             font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .user-register-container form input,
-        .user-register-container form select {
+        .user-edit-container form input,
+        .user-edit-container form select {
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -43,15 +43,16 @@
             border: 1px solid #ccc;
         }
 
-        .user-register-container .action-buttons {
+        .user-edit-container .action-buttons {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        .user-register-container .action-buttons .btn {
+        .user-edit-container .action-buttons .btn {
             margin: 0 5px;
         }
+
         .btn {
             border-radius: 5px;
             padding: 5px 10px;
@@ -84,7 +85,12 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="#">Logout</a></li>
+                    {{-- {{ route('logout') }} --}}
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -99,11 +105,11 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="name">First name:</label>
+                        <label for="name">First Name:</label>
                         <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $priest->name) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="surname">Last name:</label>
+                        <label for="surname">Last Name:</label>
                         <input type="text" name="surname" id="surname" class="form-control" value="{{ old('surname', $priest->surname) }}" required>
                     </div>
                     <div class="form-group">

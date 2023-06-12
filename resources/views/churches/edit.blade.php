@@ -44,7 +44,6 @@
         }
 
         .user-edit-container .action-buttons {
-            display: flex;
             justify-content: center;
             margin-top: 20px;
         }
@@ -53,18 +52,24 @@
             margin: 0 5px;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn {
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #2196F3;
             color: white;
         }
 
         .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
+            background-color: #f44336;
             color: white;
         }
     </style>
@@ -79,7 +84,12 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
+                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="#">Logout</a></li>
+                    {{-- {{ route('logout') }} --}}
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>

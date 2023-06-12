@@ -53,18 +53,13 @@
             margin: 0 5px;
         }
 
+        .btn-info {
+            background-color: #2196F3;
+            color: white;
+        }
+
         .btn-secondary {
             background-color: #6c757d;
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
             color: white;
         }
     </style>
@@ -79,7 +74,12 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
+                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="#">Logout</a></li>
+                    {{-- {{ route('logout') }} --}}
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -88,75 +88,55 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
+        <div class="col-md-12">
+            <div class="user-edit-container">
                 <form action="{{ route('funerals.update', $funeral) }}" method="POST">
                     @csrf
                     @method('PUT')
 
                     <div class="form-group">
-                        <label for="deceased_name">Deceased first name and last name</label>
-                        <input type="text" name="deceased_name" id="deceased_name" class="form-control" value="{{ old('deceased_name', $funeral->deceased_name) }}" required>
-                    </div>
+                        <label for="deceased_name">Deceased First Name and LastName</label>
+                        <input type="text" class="form-control" id="deceased_name" name="deceased_name" value="{{ $funeral->deceased_name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_funeral">Date of Funeral</label>
+                            <input type="date" class="form-control" id="date_of_funeral" name="date_of_funeral" value="{{ $funeral->date_of_funeral }}" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="deceased_age">Age:</label>
-                        <input type="number" name="deceased_age" id="deceased_age" class="form-control" value="{{ old('deceased_age', $funeral->deceased_age) }}" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="time_of_funeral">Time of Funeral</label>
+                            <input type="time" class="form-control" id="time_of_funeral" name="time_of_funeral" value="{{ $funeral->time_of_funeral }}" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="user_id">User Id:</label>
-                        <input type="number" name="user_id" id="user_id" class="form-control" value="{{ old('user_id', $funeral->user_id) }}" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" class="form-control" id="location" name="location" value="{{ $funeral->location }}" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="coffin_id">Coffin Id:</label>
-                        <input type="number" name="coffin_id" id="coffin_id" class="form-control" value="{{ old('coffin_id', $funeral->coffin_id) }}" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ $funeral->description }}</textarea>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="church_id">Church Id:</label>
-                        <input type="number" name="church_id" id="church_id" class="form-control" value="{{ old('church_id', $funeral->church_id) }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="priest_id">Priest Id:</label>
-                        <input type="number" name="priest_id" id="priest_id" class="form-control" value="{{ old('priest_id', $funeral->priest_id) }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">Price:</label>
-                        <input type="number" name="price" id="price" class="form-control" value="{{ old('price', $funeral->price) }}" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <a href="{{ route('funerals.index') }}" class="btn btn-secondary">Cancel</a>
-                </form>
+                        <div class="action-buttons">
+                            <button type="submit" class="btn btn-info">Save Changes</button>
+                            <a href="{{ route('funerals.index') }}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        var navLinks = document.getElementById("navLinks");
+        <script>
+            const navLinks = document.getElementById("navLinks");
 
-        function showMenu() {
-            navLinks.style.right = "0";
-        }
+            function showMenu() {
+                navLinks.style.right = "0";
+            }
 
-        function hideMenu() {
-            navLinks.style.right = "-200px";
-        }
-    </script>
-</body>
-
-</html>
+            function hideMenu() {
+                navLinks.style.right = "-200px";
+            }
+        </script>
+        </body>
+        </html>

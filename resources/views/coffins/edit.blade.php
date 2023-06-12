@@ -53,18 +53,24 @@
             margin: 0 5px;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn {
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #2196F3;
             color: white;
         }
 
         .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
+            background-color: #f44336;
             color: white;
         }
     </style>
@@ -79,7 +85,12 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
+                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="#">Logout</a></li>
+                    {{-- {{ route('logout') }} --}}
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -88,34 +99,32 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="user-edit-container">
-                    <form action="{{ route('coffins.update', $coffin) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="material">Material:</label>
-                            <input type="text" name="material" id="material" class="form-control" value="{{ old('material', $coffin->material) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="color">Color:</label>
-                            <input type="text" name="color" id="color" class="form-control" value="{{ old('color', $coffin->color) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="size">Size:</label>
-                            <input type="text" name="size" id="size" class="form-control" value="{{ old('size', $coffin->size) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="priceOfCoffins">Price:</label>
-                            <input type="text" name="priceOfCoffins" id="priceOfCoffins" class="form-control" value="{{ old('priceOfCoffins', $coffin->priceOfCoffins) }}" required>
-                        </div>
-                        <div class="action-buttons">
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                            <a href="{{ route('coffins.index') }}" class="btn btn-secondary">Cancel</a>
-                        </div>
-                    </form>
-                </div>
+        <div class="col-md-12">
+            <div class="user-edit-container">
+                <form action="{{ route('coffins.update', $coffin) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="material">Material:</label>
+                        <input type="text" name="material" id="material" class="form-control" value="{{ old('material', $coffin->material) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <input type="text" name="color" id="color" class="form-control" value="{{ old('color', $coffin->color) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Size:</label>
+                        <input type="text" name="size" id="size" class="form-control" value="{{ old('size', $coffin->size) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceOfCoffins">Price:</label>
+                        <input type="text" name="priceOfCoffins" id="priceOfCoffins" class="form-control" value="{{ old('priceOfCoffins', $coffin->priceOfCoffins) }}" required>
+                    </div>
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-info">Edit</button>
+                        <a href="{{ route('coffins.index') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
