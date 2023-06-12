@@ -65,8 +65,12 @@
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{ route('about2') }}">About</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="#">Logout</a></li>
                     {{-- {{ route('logout') }} --}}
                 </ul>
             </div>

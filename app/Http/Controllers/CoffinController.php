@@ -59,8 +59,10 @@ class CoffinController extends Controller
 
     public function destroy(Coffin $coffin)
     {
-        $coffin->delete();
+        $coffin->funerals()->delete(); // Delete associated funerals
+        $coffin->delete(); // Delete the coffin
 
         return redirect()->route('coffins.index')->with('success', 'Trumna została usunięta.');
     }
+
 }

@@ -94,8 +94,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $user->delete();
+        $user->funerals()->delete(); // Delete associated funerals
+        $user->delete(); // Delete the user
 
         return redirect()->route('users.index')->with('success', 'Użytkownik został usunięty.');
     }
+
 }

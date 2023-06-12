@@ -18,6 +18,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+Route::get('/about2', function () {
+    return view('about2');
+})->name('about2');
 
 
 Route::resource('churches', ChurchController::class);
