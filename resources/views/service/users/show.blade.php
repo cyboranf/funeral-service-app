@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>User Create</title>
+    <title>User Details</title>
     <style>
-        .user-create-container {
+        .user-details-container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
@@ -21,35 +21,27 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .user-create-container form {
-            margin-top: 20px;
-        }
-
-        .user-create-container form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .user-create-container form label {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .user-create-container form input,
-        .user-create-container form select {
+        .user-details-table {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            margin: 0 auto;
         }
 
-        .user-create-container .action-buttons {
+        .user-details-table th {
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        .user-details-table td {
+            padding: 10px;
+        }
+
+        .action-buttons {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        .user-create-container .action-buttons .btn {
+        .action-buttons .btn {
             margin: 0 5px;
         }
 
@@ -79,43 +71,51 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
-                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
-                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="{{ route('priests2.index') }}">Priests</a></li>
+                    <li><a href="{{ route('funerals2.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('coffins2.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches2.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>User Create</h1>
+        <h1>User Details</h1>
     </section>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="user-create-container">
-                    <h1>Add new Priest</h1>
-                    <form action="{{ route('priests.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">First name:</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="surname">Last name:</label>
-                            <input type="text" name="surname" id="surname" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="religion">Religion:</label>
-                            <input type="text" name="religion" id="religion" class="form-control" required>
-                        </div>
+    <div class="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="user-details-container">
+                        <table class="table user-details-table">
+                            <tbody>
+                                <tr>
+                                    <th>First name:</th>
+                                    <td>{{ $user->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Last name:</th>
+                                    <td>{{ $user->surname }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Birthday:</th>
+                                    <td>{{ $user->birthday}}</td>
+                                </tr>
+                                <tr>
+                                    <th>City:</th>
+                                    <td>{{ $user->city }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Role:</th>
+                                    <td>{{ $user->role->name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <div class="action-buttons">
-                            <button type="submit" class="btn btn-primary">Add</button>
-                            <a href="{{ route('priests.index') }}" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('users2.index') }}" class="btn btn-secondary">Back</a>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

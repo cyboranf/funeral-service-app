@@ -10,33 +10,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Churches List</title>
+    <title>Funerals List</title>
     <style>
-        .churches-table {
+        .funerals-table {
             background-color: #f9f9f9;
             border-collapse: collapse;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             width: 100%;
         }
 
-        .churches-table th,
-        .churches-table td {
+        .funerals-table th,
+        .funerals-table td {
             padding: 12px 8px;
             text-align: left;
         }
 
-        .churches-table-header {
+        .funerals-table-header {
             background-color: #dcdcdc;
             color: #333333;
         }
 
-        .churches-table tr:nth-child(even) {
+        .funerals-table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
         .btn {
             border-radius: 5px;
             padding: 5px 10px;
+            margin-right: 5px;
         }
 
         .btn-primary {
@@ -57,6 +58,15 @@
         .full-width {
             width: 100%;
         }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-group .btn {
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -69,48 +79,54 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
-                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
-                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('users2.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests2.index') }}">Priests</a></li>
+                    <li><a href="{{ route('coffins2.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches2.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
 
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>Churches List</h1>
+        <h1>Funerals List</h1>
     </section>
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('churches.create') }}" class="btn btn-primary">Add new church</a>
+                <a href="{{ route('funerals.create') }}" class="btn btn-primary">Add new Funeral</a>
                 <table class="table mt-3 user-table full-width">
                     <thead>
-                        <tr class="churches-table-header">
+                        <tr class="funerals-table-header">
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Address</th>
+                            <th>Deceased</th>
+                            <th>Age</th>
+                            <th>User</th>
+                            <th>Coffin</th>
+                            <th>Church</th>
+                            <th>Priest</th>
+                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($churches as $church)
-                        <tr>
-                            <td>{{ $church->id }}</td>
-                            <td>{{ $church->name }}</td>
-                            <td>{{ $church->address }}</td>
-                            <td>
-                                <a href="{{ route('churches.show', $church) }}" class="btn btn-info btn-sm">Details</a>
-                                <a href="{{ route('churches.edit', $church) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('churches.destroy', $church) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę świątynię?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach ($funerals as $funeral)
+                            <tr>
+                                <td>{{ $funeral->id }}</td>
+                                <td>{{ $funeral->deceased_name }}</td>
+                                <td>{{ $funeral->deceased_age }}</td>
+                                <td>{{ $funeral->user->name }}</td>
+                                <td>{{ $funeral->coffin->material }}</td>
+                                <td>{{ $funeral->church->name ?? 'Brak' }}</td>
+                                <td>{{ $funeral->priest->name ?? 'Brak' }}</td>
+                                <td>{{ $funeral->price }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('funerals2.show', $funeral) }}" class="btn btn-info btn-sm">Details</a>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

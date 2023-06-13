@@ -61,10 +61,10 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
-                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
-                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="{{ route('users2.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests2.index') }}">Priests</a></li>
+                    <li><a href="{{ route('coffins2.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches2.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
 
                 </ul>
@@ -111,7 +111,7 @@
         </table>
 
         <div class="action-buttons">
-            <a href="{{ route('funerals.index') }}" class="btn btn-secondary">Back</a>
+            <a href="{{ route('funerals2.index') }}" class="btn btn-secondary">Back</a>
         </div>
     </div>
 

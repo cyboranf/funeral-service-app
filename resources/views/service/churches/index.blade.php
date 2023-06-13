@@ -69,10 +69,10 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
-                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
-                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('users2.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests2.index') }}">Priests</a></li>
+                    <li><a href="{{ route('funerals2.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('coffins2.index') }}">Coffins</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
 
                 </ul>
@@ -102,13 +102,7 @@
                             <td>{{ $church->name }}</td>
                             <td>{{ $church->address }}</td>
                             <td>
-                                <a href="{{ route('churches.show', $church) }}" class="btn btn-info btn-sm">Details</a>
-                                <a href="{{ route('churches.edit', $church) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('churches.destroy', $church) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę świątynię?')">Delete</button>
-                                </form>
+                                <a href="{{ route('churches2.show', $church) }}" class="btn btn-info btn-sm">Details</a>
                             </td>
                         </tr>
                         @endforeach

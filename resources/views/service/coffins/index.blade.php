@@ -10,27 +10,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Churches List</title>
+    <title>Coffins List</title>
     <style>
-        .churches-table {
+        .coffins-table {
             background-color: #f9f9f9;
             border-collapse: collapse;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             width: 100%;
         }
 
-        .churches-table th,
-        .churches-table td {
+        .coffins-table th,
+        .coffins-table td {
             padding: 12px 8px;
             text-align: left;
         }
 
-        .churches-table-header {
+        .coffins-table-header {
             background-color: #dcdcdc;
             color: #333333;
         }
 
-        .churches-table tr:nth-child(even) {
+        .coffins-table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
@@ -69,46 +69,44 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
-                    <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
-                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('users2.index') }}">Users</a></li>
+                    <li><a href="{{ route('priests2.index') }}">Priests</a></li>
+                    <li><a href="{{ route('funerals2.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('churches2.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
 
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>Churches List</h1>
+        <h1>Coffins List</h1>
     </section>
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('churches.create') }}" class="btn btn-primary">Add new church</a>
+                <a href="{{ route('coffins.create') }}" class="btn btn-primary">Add new coffin</a>
                 <table class="table mt-3 user-table full-width">
                     <thead>
-                        <tr class="churches-table-header">
+                        <tr class="coffins-table-header">
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Address</th>
+                            <th>Material</th>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($churches as $church)
+                        @foreach ($coffins as $coffin)
                         <tr>
-                            <td>{{ $church->id }}</td>
-                            <td>{{ $church->name }}</td>
-                            <td>{{ $church->address }}</td>
+                            <td>{{ $coffin->id }}</td>
+                            <td>{{ $coffin->material }}</td>
+                            <td>{{ $coffin->color }}</td>
+                            <td>{{ $coffin->size }}</td>
+                            <td>{{ $coffin->price }}</td>
                             <td>
-                                <a href="{{ route('churches.show', $church) }}" class="btn btn-info btn-sm">Details</a>
-                                <a href="{{ route('churches.edit', $church) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('churches.destroy', $church) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę świątynię?')">Delete</button>
-                                </form>
+                                <a href="{{ route('coffins2.show', $coffin) }}" class="btn btn-info btn-sm">Details</a>
                             </td>
                         </tr>
                         @endforeach

@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Informations about funeral</title>
+    <title>Priest: {{ $priest->name }} {{ $priest->surname }}</title>
     <style>
-        .funeral-details-container {
+        .priest-details-container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
@@ -21,17 +21,17 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .funeral-details-table {
+        .priest-details-table {
             width: 100%;
             margin: 0 auto;
         }
 
-        .funeral-details-table th {
+        .priest-details-table th {
             font-weight: 600;
             padding: 10px;
         }
 
-        .funeral-details-table td {
+        .priest-details-table td {
             padding: 10px;
         }
 
@@ -43,6 +43,11 @@
 
         .action-buttons .btn {
             margin: 0 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
         }
 
         .btn-secondary {
@@ -61,57 +66,38 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('priests.index') }}">Priests</a></li>
-                    <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
-                    <li><a href="{{ route('churches.index') }}">Churches</a></li>
+                    <li><a href="{{ route('users2.index') }}">Users</a></li>
+                    <li><a href="{{ route('funerals2.index') }}">Funerals</a></li>
+                    <li><a href="{{ route('coffins2.index') }}">Coffins</a></li>
+                    <li><a href="{{ route('churches2.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
 
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>Informations about funeral</h1>
+        <h1>Ksiądz: {{ $priest->name }} {{ $priest->surname }}</h1>
     </section>
 
-    <div class="funeral-details-container">
-        <table class="funeral-details-table">
-            <tr>
-                <th>ID:</th>
-                <td>{{ $funeral->id }}</td>
-            </tr>
-            <tr>
-                <th>Deceased:</th>
-                <td>{{ $funeral->deceased_name }}</td>
-            </tr>
-            <tr>
-                <th>Age:</th>
-                <td>{{ $funeral->deceased_age }}</td>
-            </tr>
-            <tr>
-                <th>User:</th>
-                <td>{{ $funeral->user->name }}</td>
-            </tr>
-            <tr>
-                <th>Coffin:</th>
-                <td>{{ $funeral->coffin->material }}</td>
-            </tr>
-            <tr>
-                <th>Church:</th>
-                <td>{{ $funeral->church->name ?? 'Brak' }}</td>
-            </tr>
-            <tr>
-                <th>Priest:</th>
-                <td>{{ $funeral->priest->name ?? 'Brak' }}</td>
-            </tr>
-            <tr>
-                <th>Price:</th>
-                <td>{{ $funeral->price }}</td>
-            </tr>
+    <div class="priest-details-container">
+        <table class="priest-details-table">
+            <tbody>
+                <tr>
+                    <th>First name:</th>
+                    <td>{{ $priest->name }}</td>
+                </tr>
+                <tr>
+                    <th>Last name:</th>
+                    <td>{{ $priest->surname }}</td>
+                </tr>
+                <tr>
+                    <th>Religion:</th>
+                    <td>{{ $priest->religion }}</td>
+                </tr>
+            </tbody>
         </table>
-
         <div class="action-buttons">
-            <a href="{{ route('funerals.index') }}" class="btn btn-secondary">Back</a>
+            <a href="{{ route('priests2.index') }}" class="btn btn-secondary">Back</a>
         </div>
     </div>
 

@@ -70,8 +70,8 @@
                     <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
                     <li><a href="{{ route('churches.index') }}">Churches</a></li>
-                    <li><a href="#">Logout</a></li>
-                    {{-- {{ route('logout') }} --}}
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
+
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
