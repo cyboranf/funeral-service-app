@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -27,6 +28,9 @@ class LoginController extends Controller
             if (optional(Auth::user()->role)->id == 1) {
                 return redirect()->route('users.index');
             }
+            if (optional(Auth::user()->role)->id == 2) {
+                return redirect()->route('users2.index');
+            }
 
             return redirect()->route('home');
         }
@@ -36,14 +40,10 @@ class LoginController extends Controller
         ]);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
+        Session::flush();
         Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect()->route('home');
+        return redirect(route('home'));
     }
 }

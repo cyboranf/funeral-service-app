@@ -69,4 +69,14 @@ class FuneralController extends Controller
 
         return redirect()->route('funerals.index')->with('success', 'Pogrzeb został usunięty.');
     }
+    public function serviceIndex()
+    {
+        $funerals = Funeral::all();
+        return view('service.funerals.index', compact('funerals'));
+    }
+
+    public function serviceShow(Funeral $funeral)
+    {
+        return view('service.funerals.show', compact('funeral'));
+    }
 }

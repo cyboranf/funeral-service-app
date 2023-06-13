@@ -61,4 +61,14 @@ class PriestController extends Controller
 
         return redirect()->route('priests.index')->with('success', 'Ksiądz został usunięty.');
     }
+    public function serviceIndex()
+    {
+        $priests = Priest::all();
+        return view('service.priests.index', compact('priests'));
+    }
+
+    public function serviceShow(Priest $priest)
+    {
+        return view('service.priests.show', compact('priest'));
+    }
 }

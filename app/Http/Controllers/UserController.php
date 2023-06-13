@@ -100,4 +100,14 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Użytkownik został usunięty.');
     }
 
+    public function serviceIndex()
+    {
+        $users = User::all();
+        return view('service.users.index', compact('users'));
+    }
+
+    public function serviceShow(User $user)
+    {
+        return view('service.users.show', compact('user'));
+    }
 }

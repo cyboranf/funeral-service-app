@@ -65,4 +65,14 @@ class CoffinController extends Controller
         return redirect()->route('coffins.index')->with('success', 'Trumna została usunięta.');
     }
 
+    public function serviceIndex()
+    {
+         $coffins = Coffin::all();
+         return view('service.coffins.index', compact('coffins'));
+    }
+
+public function serviceShow(Coffin $coffin)
+    {
+        return view('service.coffins.show', compact('coffin'));
+    }
 }

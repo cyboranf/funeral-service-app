@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Church;
@@ -57,5 +58,16 @@ class ChurchController extends Controller
         $church->delete();
 
         return redirect()->route('churches.index')->with('success', 'Kościół został usunięty.');
+    }
+
+    public function serviceIndex()
+    {
+        $churches = Church::all();
+        return view('service.churches.index', compact('churches'));
+    }
+
+    public function serviceShow(Church $church)
+    {
+        return view('service.churches.show', compact('church'));
     }
 }
