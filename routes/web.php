@@ -9,9 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [FuneralController::class, 'getPastFunerals'])->name('home');
+
 
 
 Route::get('/about', function () {
@@ -54,6 +53,7 @@ Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.d
 //routingi dla service
 Route::get('/churches2', [ChurchController::class, 'serviceIndex'])->name('churches2.index');
 Route::get('/churches2/{church}', [ChurchController::class, 'serviceShow'])->name('churches2.show');
+
 
 Route::get('/coffins2', [CoffinController::class, 'serviceIndex'])->name('coffins2.index');
 Route::get('/coffins2/{coffin}', [CoffinController::class, 'serviceShow'])->name('coffins2.show');

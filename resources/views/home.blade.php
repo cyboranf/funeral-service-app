@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Funeral</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        .facility-table {
+            background-color: #f9f9f9;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .facility-table th,
+        .facility-table td {
+            padding: 12px 8px;
+            text-align: left;
+        }
+
+        .facility-table-header {
+            background-color: #dcdcdc;
+            color: #333333;
+        }
+
+        .facility-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,8 +46,7 @@
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a>
-                    </li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -41,45 +64,27 @@
         </div>
     </section>
 
-    <!-- Service -->
-    <section class="services">
-        <h1>Services We Offer</h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam atque
-            dolorem dolores autem. Fugiat reprehenderit quia ea, at sunt sequi
-            explicabo sed. Harum eos quia iste cum eius pariatur obcaecati.
-        </p>
-
-        <div class="row">
-            <div class="course-col">
-                <h3>Bronze</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque
-                    voluptatum laboriosam, enim sit omnis distinctio velit maiores
-                    perferendis dolorem! Cumque rerum est nisi expedita pariatur numquam
-                    reprehenderit dolorem deserunt esse.
-                </p>
-            </div>
-            <div class="course-col">
-                <h3>Silver</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque
-                    voluptatum laboriosam, enim sit omnis distinctio velit maiores
-                    perferendis dolorem! Cumque rerum est nisi expedita pariatur numquam
-                    reprehenderit dolorem deserunt esse.
-                </p>
-            </div>
-            <div class="course-col">
-                <h3>Gold</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque
-                    voluptatum laboriosam, enim sit omnis distinctio velit maiores
-                    perferendis dolorem! Cumque rerum est nisi expedita pariatur numquam
-                    reprehenderit dolorem deserunt esse.
-                </p>
-            </div>
-        </div>
+    <!-- Past Funerals -->
+    <section class="facility">
+        <h1>Today We Remember the Deceased</h1>
+        <table class="facility-table">
+            <thead>
+                <tr class="facility-table-header">
+                    <th>Deceased Name</th>
+                    <th>Death Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($pastFunerals as $funeral)
+                    <tr>
+                        <td>{{ $funeral->deceased_name }}</td>
+                        <td>{{ $funeral->death_date}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </section>
+
 
     <!-- Facility -->
     <section class="facility">
@@ -237,4 +242,5 @@
         }
     </script>
 </body>
+
 </html>
