@@ -57,6 +57,17 @@
         .full-width {
             width: 100%;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -83,55 +94,52 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table mt-3 user-table full-width">
-                    <thead>
-                        <tr class="coffins-table-header">
-                            <th>ID</th>
-                            <th>Deceased Name</th>
-                            <th>Deceased Age</th>
-                            <th>User ID</th>
-                            <th>Coffin ID</th>
-                            <th>Church ID</th>
-                            <th>Priest ID</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($funerals as $funeral)
-                        <tr>
-                            <td>{{ $funeral->id }}</td>
-                            <td>{{ $funeral->deceased_name }}</td>
-                            <td>{{ $funeral->deceased_age }}</td>
-                            <td>{{ $funeral->user_id }}</td>
-                            <td>{{ $funeral->coffin_id }}</td>
-                            <td>{{ $funeral->church_id }}</td>
-                            <td>{{ $funeral->priest_id }}</td>
-                            <td>{{ $funeral->price }}</td>
-                            <td>
+        <table class="coffins-table">
+            <thead>
+                <tr class="coffins-table-header">
+                    <th>ID</th>
+                    <th>Deceased Name</th>
+                    <th>Deceased Age</th>
+                    <th>User ID</th>
+                    <th>Coffin ID</th>
+                    <th>Church ID</th>
+                    <th>Priest ID</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($funerals as $funeral)
+                    <tr>
+                        <td>{{ $funeral->id }}</td>
+                        <td>{{ $funeral->deceased_name }}</td>
+                        <td>{{ $funeral->deceased_age }}</td>
+                        <td>{{ $funeral->user_id }}</td>
+                        <td>{{ $funeral->coffin_id }}</td>
+                        <td>{{ $funeral->church_id }}</td>
+                        <td>{{ $funeral->priest_id }}</td>
+                        <td>{{ $funeral->price }}</td>
+                        <td>
+                            <div class="btn-group">
                                 <!-- Przycisk Accept -->
-                                <form action="{{ route('funerals.accept', $funeral) }}" method="POST" style="display: inline-block;">
-
+                                <form action="{{ route('funerals.accept', $funeral) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary btn-sm">Accept</button>
+                                    <button type="submit" class="btn btn-primary">Accept</button>
                                 </form>
                                 <!-- Przycisk Edit -->
-                                <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-info btn-sm">Edit</a>
+                                <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-info">Edit</a>
                                 <!-- Przycisk Delete -->
-                                <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
+                                <form action="{{ route('funerals.destroy', $funeral) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this funeral?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this funeral?')">Delete</button>
                                 </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <script>

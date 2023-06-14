@@ -67,6 +67,17 @@
         .btn-group .btn {
             margin-right: 5px;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -85,7 +96,6 @@
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
                     <li><a href="{{ route('churches.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -94,51 +104,47 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('funerals.create') }}" class="btn btn-primary">Add new Funeral</a>
-                <table class="table mt-3 user-table full-width">
-                    <thead>
-                        <tr class="funerals-table-header">
-                            <th>ID</th>
-                            <th>Deceased</th>
-                            <th>Age</th>
-                            <th>User</th>
-                            <th>Coffin</th>
-                            <th>Church</th>
-                            <th>Priest</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($funerals as $funeral)
-                            <tr>
-                                <td>{{ $funeral->id }}</td>
-                                <td>{{ $funeral->deceased_name }}</td>
-                                <td>{{ $funeral->deceased_age }}</td>
-                                <td>{{ $funeral->user->name }}</td>
-                                <td>{{ $funeral->coffin->material }}</td>
-                                <td>{{ $funeral->church->name ?? 'Brak' }}</td>
-                                <td>{{ $funeral->priest->name ?? 'Brak' }}</td>
-                                <td>{{ $funeral->price }}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('funerals.show', $funeral) }}" class="btn btn-info btn-sm">Details</a>
-                                        <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this funeral?')">Delete</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <a href="{{ route('funerals.create') }}" class="btn btn-primary">Add new Funeral</a>
+        <table class="funerals-table">
+            <thead>
+                <tr class="funerals-table-header">
+                    <th>ID</th>
+                    <th>Deceased</th>
+                    <th>Age</th>
+                    <th>User</th>
+                    <th>Coffin</th>
+                    <th>Church</th>
+                    <th>Priest</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($funerals as $funeral)
+                    <tr>
+                        <td>{{ $funeral->id }}</td>
+                        <td>{{ $funeral->deceased_name }}</td>
+                        <td>{{ $funeral->deceased_age }}</td>
+                        <td>{{ $funeral->user->name }}</td>
+                        <td>{{ $funeral->coffin->material }}</td>
+                        <td>{{ $funeral->church->name ?? 'Brak' }}</td>
+                        <td>{{ $funeral->priest->name ?? 'Brak' }}</td>
+                        <td>{{ $funeral->price }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{ route('funerals.show', $funeral) }}" class="btn btn-info">Details</a>
+                                <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-primary">Edit</a>
+                                <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this funeral?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <script>

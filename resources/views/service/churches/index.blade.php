@@ -57,6 +57,17 @@
         .full-width {
             width: 100%;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -74,7 +85,6 @@
                     <li><a href="{{ route('funerals2.index') }}">Funerals</a></li>
                     <li><a href="{{ route('coffins2.index') }}">Coffins</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -83,33 +93,30 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('churches.create') }}" class="btn btn-primary">Add new church</a>
-                <table class="table mt-3 user-table full-width">
-                    <thead>
-                        <tr class="churches-table-header">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($churches as $church)
-                        <tr>
-                            <td>{{ $church->id }}</td>
-                            <td>{{ $church->name }}</td>
-                            <td>{{ $church->address }}</td>
-                            <td>
-                                <a href="{{ route('churches2.show', $church) }}" class="btn btn-info btn-sm">Details</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <table class="churches-table">
+            <thead>
+                <tr class="churches-table-header">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($churches as $church)
+                    <tr>
+                        <td>{{ $church->id }}</td>
+                        <td>{{ $church->name }}</td>
+                        <td>{{ $church->address }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{ route('churches2.show', $church) }}" class="btn btn-info">Details</a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <script>

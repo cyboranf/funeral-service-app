@@ -402,12 +402,9 @@ button[type="submit"]:hover {
         </nav>
 
         <div class="text-box">
-            <h1>Biggest Funeral Services</h1>
+            <h1>Welcome to Biggest Funeral Services</h1>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nobis
-                vel nam dignissimos nihil assumenda nulla? Voluptatum doloribus illum
-                reprehenderit soluta quidem pariatur quas repellat quod, odio, totam
-                voluptates obcaecati!
+                At Biggest Funeral Services, we understand the importance of commemorating the lives of our loved ones with dignity and respect. We offer a wide range of funeral services to cater to the unique needs and preferences of our clients. Our dedicated team is here to provide compassionate support during this difficult time.
             </p>
             <a href="#" class="hero-btn">Visit Us</a>
         </div>
@@ -436,104 +433,99 @@ button[type="submit"]:hover {
         </div>
     </section>
 
-  <!-- Request a Funeral Form -->
-<section class="facility">
-    <div class="container">
-        <h1>Request a Funeral</h1>
-        <div class="form-container">
-            <form action="{{ route('storeFuneral') }}" method="post">
-                @csrf
-                <div class="form-group">
-                    <label for="deceased_name">Deceased Name:</label>
-                    <input type="text" name="deceased_name" id="deceased_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="deceased_age">Deceased Age:</label>
-                    <input type="number" name="deceased_age" id="deceased_age" required>
-                </div>
-                <div class="form-group">
-                    <label for="user_name">Your Name:</label>
-                    <input type="text" name="user_name" id="user_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="user_email">Your Email:</label>
-                    <input type="email" name="user_email" id="user_email" required>
-                </div>
-                <div class="form-group">
-                    <label for="coffin_id">Select Coffin:</label>
-                    <select name="coffin_id" id="coffin_id" required>
-                        <option value="">Select Coffin</option>
-                        @foreach ($coffins as $coffin)
-                            <option value="{{ $coffin->id }}">{{ $coffin->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="church_id">Select Church:</label>
-                    <select name="church_id" id="church_id">
-                        <option value="">None</option>
-                        @foreach ($churches as $church)
-                            <option value="{{ $church->id }}">{{ $church->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="priest_id">Select Priest:</label>
-                    <select name="priest_id" id="priest_id">
-                        <option value="">None</option>
-                        @foreach ($priests as $priest)
-                            <option value="{{ $priest->id }}">{{ $priest->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <input type="hidden" name="price" value="">
-                <button type="submit">Submit</button>
-            </form>
+    <!-- Request a Funeral Form -->
+    <section class="facility">
+        <div class="container">
+            <h1>Request a Funeral</h1>
+            <p>
+                At Biggest Funeral Services, we are here to assist you in arranging a personalized and meaningful funeral service for your loved one. Please provide the following information to request a funeral service:
+            </p>
+            <p>
+                The cost of the funeral service is calculated based on the selected coffin and additional services. The average cost of a coffin is around $400, and the funeral service costs approximately $650. We offer a 25% discount for individuals younger than 20 years old.
+            </p>
+            <p>
+                As a special offer, if you have organized three funerals within a month using the same email address, the third funeral service will be provided free of charge.
+            </p>
+            <div class="form-container">
+                <form action="{{ route('storeFuneral') }}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="deceased_name">Deceased Name:</label>
+                        <input type="text" name="deceased_name" id="deceased_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deceased_age">Deceased Age:</label>
+                        <input type="number" name="deceased_age" id="deceased_age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name">Your Name:</label>
+                        <input type="text" name="user_name" id="user_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_email">Your Email:</label>
+                        <input type="email" name="user_email" id="user_email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="coffin_id">Select Coffin:</label>
+                        <select name="coffin_id" id="coffin_id" required>
+                            <option value="">Select Coffin</option>
+                            @foreach ($coffins as $coffin)
+                                <option value="{{ $coffin->id }}">{{ $coffin->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="church_id">Select Church:</label>
+                        <select name="church_id" id="church_id">
+                            <option value="">None</option>
+                            @foreach ($churches as $church)
+                                <option value="{{ $church->id }}">{{ $church->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priest_id">Select Priest:</label>
+                        <select name="priest_id" id="priest_id">
+                            <option value="">None</option>
+                            @foreach ($priests as $priest)
+                                <option value="{{ $priest->id }}">{{ $priest->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="hidden" name="price" value="">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
 
     <!-- Coffin -->
     <section class="coffin">
         <div class="container">
-            <h1>Our Coffin</h1>
+            <h1>Our Coffin Selection</h1>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse sunt
-                dignissimos ad odio maiores porro rerum suscipit deleniti ipsum quis
-                consequuntur iusto, velit rem, neque perferendis veniam laudantium magni
-                laborum.
+                We offer a diverse range of coffins to suit different preferences and budgets. Each coffin is crafted with the utmost care and attention to detail. Choose from our selection below:
             </p>
             <div class="row">
                 <div class="coffin-col">
-                    <img src="{{ asset('images/coffin/coffin-1.jpg') }}" />
+                    <img src="{{ asset('images/coffin/coffin-1.jpg') }}" alt="Basic Coffin" />
                     <h3>Basic Coffin</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
-                        minima, molestiae ducimus amet facere tempore commodi, ipsum
-                        aspernatur quidem blanditiis eligendi magni quo quas nesciunt. Ab
-                        inventore sit rerum provident.
+                        Our basic coffin provides a simple yet elegant resting place for your loved one. It is crafted from high-quality materials and designed to ensure dignity and respect.
                     </p>
                 </div>
                 <div class="coffin-col">
-                    <img src="{{ asset('images/coffin/coffin-1.jpg') }}" />
-                    <h3>Basic Coffin</h3>
+                    <img src="{{ asset('images/coffin/coffin-1.jpg') }}" alt="Deluxe Coffin" />
+                    <h3>Deluxe Coffin</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
-                        minima, molestiae ducimus amet facere tempore commodi, ipsum
-                        aspernatur quidem blanditiis eligendi magni quo quas nesciunt. Ab
-                        inventore sit rerum provident.
+                        For those seeking a more luxurious option, our deluxe coffin offers superior craftsmanship and exquisite design. It provides a fitting tribute to the life and legacy of your loved one.
                     </p>
                 </div>
                 <div class="coffin-col">
-                    <img src="{{ asset('images/coffin/coffin-1.jpg') }}" />
-                    <h3>Basic Coffin</h3>
+                    <img src="{{ asset('images/coffin/coffin-1.jpg') }}" alt="Customized Coffin" />
+                    <h3>Customized Coffin</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
-                        minima, molestiae ducimus amet facere tempore commodi, ipsum
-                        aspernatur quidem blanditiis eligendi magni quo quas nesciunt. Ab
-                        inventore sit rerum provident.
+                        Our customized coffin allows you to personalize every aspect, from the materials used to the intricate details. It ensures a unique and meaningful farewell for your loved one.
                     </p>
                 </div>
             </div>
@@ -545,22 +537,16 @@ button[type="submit"]:hover {
         <div class="container">
             <h1>What Our Customers Say</h1>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-                provident repudiandae, asperiores perspiciatis inventore tenetur magnam
-                optio, quos ipsum cumque sequi eaque odio voluptate dicta delectus fuga
-                porro aspernatur omnis?
+                Our commitment to exceptional service and compassionate care has earned us the trust and gratitude of numerous families. Here's what some of our customers have to say about their experience with Biggest Funeral Services:
             </p>
             <div class="row">
                 <div class="testimonial-col">
-                    <img src="{{ asset('images/testimonial/cus-1.jpg') }}" />
+                    <img src="{{ asset('images/testimonial/cus-1.jpg') }}" alt="Customer" />
                     <div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                            mollitia alias id, commodi aspernatur fuga soluta nesciunt
-                            repellat sed illum reiciendis dignissimos nulla dolorum aliquid.
-                            Dolores eius animi velit. Eveniet.
+                            "I am extremely grateful for the support and professionalism exhibited by the team at Biggest Funeral Services. They guided us through every step of the funeral arrangements, ensuring that our loved one received a dignified farewell."
                         </p>
-                        <h3>Maria Kur</h3>
+                        <h3>John Smith</h3>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -569,15 +555,12 @@ button[type="submit"]:hover {
                     </div>
                 </div>
                 <div class="testimonial-col">
-                    <img src="{{ asset('images/testimonial/cus-1.jpg') }}" />
+                    <img src="{{ asset('images/testimonial/cus-1.jpg') }}" alt="Customer" />
                     <div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                            mollitia alias id, commodi aspernatur fuga soluta nesciunt
-                            repellat sed illum reiciendis dignissimos nulla dolorum aliquid.
-                            Dolores eius animi velit. Eveniet.
+                            "The level of care and compassion displayed by the team at Biggest Funeral Services exceeded our expectations. They went above and beyond to accommodate our specific requests, making the entire process much easier for our family."
                         </p>
-                        <h3>Maria Kur</h3>
+                        <h3>Jane Doe</h3>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -592,7 +575,7 @@ button[type="submit"]:hover {
     <!-- Call to Action -->
     <section class="cta">
         <div class="container">
-            <h1>Message for Your Reservation.</h1>
+            <h1>Contact Us for Assistance</h1>
             <a href="#" class="hero-btn">Contact Us</a>
         </div>
     </section>

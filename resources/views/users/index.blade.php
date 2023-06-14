@@ -58,6 +58,17 @@
         .full-width {
             width: 80%;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -76,7 +87,6 @@
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
                     <li><a href="{{ route('churches.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -85,43 +95,39 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user</a>
-                <table class="table mt-3 user-table full-width">
-                    <thead>
-                        <tr class="user-table-header">
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Birthday</th>
-                            <th>City</th>
-                            <th>Role</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->surname }}</td>
-                                <td>{{ $user->birthday }}</td>
-                                <td>{{ $user->city }}</td>
-                                <td>{{ $user->role->name }}</td>
-                                <td>
-                                    <a href="{{ route('users.show', $user) }}" class="btn btn-info">Details</a>
-                                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user</a>
+        <table class="user-table">
+            <thead>
+                <tr class="user-table-header">
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Birthday</th>
+                    <th>City</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->surname }}</td>
+                        <td>{{ $user->birthday }}</td>
+                        <td>{{ $user->city }}</td>
+                        <td>{{ $user->role->name }}</td>
+                        <td>
+                            <a href="{{ route('users.show', $user) }}" class="btn btn-info">Details</a>
+                            <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <script>

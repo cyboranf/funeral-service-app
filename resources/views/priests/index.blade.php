@@ -58,6 +58,17 @@
         .full-width {
             width: 100%;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -76,7 +87,6 @@
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
                     <li><a href="{{ route('churches.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -85,39 +95,35 @@
     </section>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('priests.create') }}" class="btn btn-primary">Add new priest</a>
-                <table class="table mt-3 user-table">
-                    <thead>
-                        <tr class="user-table-header">
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Religion</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($priests as $priest)
-                            <tr>
-                                <td>{{ $priest->name }}</td>
-                                <td>{{ $priest->surname }}</td>
-                                <td>{{ $priest->religion }}</td>
-                                <td>
-                                    <a href="{{ route('priests.show', $priest) }}" class="btn btn-info">Details</a>
-                                    <a href="{{ route('priests.edit', $priest) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('priests.destroy', $priest) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this priest?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <a href="{{ route('priests.create') }}" class="btn btn-primary">Add new priest</a>
+        <table class="user-table">
+            <thead>
+                <tr class="user-table-header">
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Religion</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($priests as $priest)
+                    <tr>
+                        <td>{{ $priest->name }}</td>
+                        <td>{{ $priest->surname }}</td>
+                        <td>{{ $priest->religion }}</td>
+                        <td>
+                            <a href="{{ route('priests.show', $priest) }}" class="btn btn-info">Details</a>
+                            <a href="{{ route('priests.edit', $priest) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('priests.destroy', $priest) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this priest?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <script>

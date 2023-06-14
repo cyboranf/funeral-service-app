@@ -57,6 +57,17 @@
         .full-width {
             width: 100%;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -75,7 +86,6 @@
                     <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
                     <li><a href="{{ route('churches.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -87,7 +97,7 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('coffins.create') }}" class="btn btn-primary">Add new coffin</a>
-                <table class="table mt-3 user-table full-width">
+                <table class="coffins-table">
                     <thead>
                         <tr class="coffins-table-header">
                             <th>ID</th>
@@ -100,22 +110,22 @@
                     </thead>
                     <tbody>
                         @foreach ($coffins as $coffin)
-                        <tr>
-                            <td>{{ $coffin->id }}</td>
-                            <td>{{ $coffin->material }}</td>
-                            <td>{{ $coffin->color }}</td>
-                            <td>{{ $coffin->size }}</td>
-                            <td>{{ $coffin->price }}</td>
-                            <td>
-                                <a href="{{ route('coffins.show', $coffin) }}" class="btn btn-info btn-sm">Details</a>
-                                <a href="{{ route('coffins.edit', $coffin) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('coffins.destroy', $coffin) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę trumnę?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $coffin->id }}</td>
+                                <td>{{ $coffin->material }}</td>
+                                <td>{{ $coffin->color }}</td>
+                                <td>{{ $coffin->size }}</td>
+                                <td>{{ $coffin->price }}</td>
+                                <td>
+                                    <a href="{{ route('coffins.show', $coffin) }}" class="btn btn-info">Details</a>
+                                    <a href="{{ route('coffins.edit', $coffin) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('coffins.destroy', $coffin) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć tę trumnę?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

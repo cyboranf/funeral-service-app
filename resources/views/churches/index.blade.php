@@ -57,6 +57,17 @@
         .full-width {
             width: 100%;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sub-header {
+            text-align: center;
+            padding: 20px 0;
+        }
     </style>
 </head>
 
@@ -75,7 +86,6 @@
                     <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -87,7 +97,7 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('churches.create') }}" class="btn btn-primary">Add new church</a>
-                <table class="table mt-3 user-table full-width">
+                <table class="churches-table">
                     <thead>
                         <tr class="churches-table-header">
                             <th>ID</th>
@@ -98,20 +108,20 @@
                     </thead>
                     <tbody>
                         @foreach ($churches as $church)
-                        <tr>
-                            <td>{{ $church->id }}</td>
-                            <td>{{ $church->name }}</td>
-                            <td>{{ $church->address }}</td>
-                            <td>
-                                <a href="{{ route('churches.show', $church) }}" class="btn btn-info btn-sm">Details</a>
-                                <a href="{{ route('churches.edit', $church) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('churches.destroy', $church) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę świątynię?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $church->id }}</td>
+                                <td>{{ $church->name }}</td>
+                                <td>{{ $church->address }}</td>
+                                <td>
+                                    <a href="{{ route('churches.show', $church) }}" class="btn btn-info">Details</a>
+                                    <a href="{{ route('churches.edit', $church) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('churches.destroy', $church) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć tę świątynię?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
