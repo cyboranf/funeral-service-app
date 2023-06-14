@@ -10,7 +10,11 @@ use App\Http\Controllers\LoginController;
 
 
 Route::get('/', [FuneralController::class, 'getPastFunerals'])->name('home');
+Route::post('/', [FuneralController::class, 'storeFuneral'])->name('storeFuneral');
 
+
+Route::get('/waiting', [FuneralController::class, 'waitingForAcceptance'])->name('funerals.waiting');
+Route::post('/{funeral}/accept', [FuneralController::class, 'acceptFuneral'])->name('funerals.accept');
 
 
 Route::get('/about', function () {

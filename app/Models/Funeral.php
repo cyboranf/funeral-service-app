@@ -14,6 +14,7 @@ class Funeral extends Model
         'church_id',
         'priest_id',
         'price',
+        'accepted',
     ];
 
     public function user()

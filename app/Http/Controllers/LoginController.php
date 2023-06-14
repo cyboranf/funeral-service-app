@@ -26,7 +26,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if (optional(Auth::user()->role)->id == 1) {
-                return redirect()->route('users.index');
+                return redirect()->route('funerals.waiting');
             }
             if (optional(Auth::user()->role)->id == 2) {
                 return redirect()->route('users2.index');

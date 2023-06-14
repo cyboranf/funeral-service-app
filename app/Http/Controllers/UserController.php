@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funeral;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect('/')->with('success', 'Użytkownik został dodany.');
+        return redirect('/users')->with('success', 'Użytkownik został dodany.');
     }
 
     public function register(Request $request)
@@ -110,4 +111,6 @@ class UserController extends Controller
     {
         return view('service.users.show', compact('user'));
     }
+
+
 }

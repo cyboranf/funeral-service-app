@@ -12,15 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->unique();
-            $table->string('password');
-        });
+            $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();        });
     }
 
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {

@@ -112,8 +112,8 @@
                             <td>{{ $funeral->price }}</td>
                             <td>
                                 <!-- Przycisk Accept -->
-                                <form action="#" method="POST" style="display: inline-block;">
-                                    {{-- {{ route('funerals.accept', $funeral) }} --}}
+                                <form action="{{ route('funerals.accept', $funeral) }}" method="POST" style="display: inline-block;">
+
                                     @csrf
                                     <button type="submit" class="btn btn-primary btn-sm">Accept</button>
                                 </form>
