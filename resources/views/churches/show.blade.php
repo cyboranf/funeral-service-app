@@ -61,6 +61,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
+                    <li><a href="{{ route('funerals.waiting') }}">Requests</a></li>
                     <li><a href="{{ route('users.index') }}">Users</a></li>
                     <li><a href="{{ route('priests.index') }}">Priests</a></li>
                     <li><a href="{{ route('funerals.index') }}">Funerals</a></li>

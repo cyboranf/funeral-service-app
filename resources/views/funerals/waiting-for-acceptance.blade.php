@@ -10,34 +10,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>User List</title>
+    <title>Funerals Waiting for Acceptance</title>
     <style>
-        .user-table {
+        .coffins-table {
             background-color: #f9f9f9;
             border-collapse: collapse;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            width: 80%;
+            width: 100%;
         }
 
-        .user-table th,
-        .user-table td {
+        .coffins-table th,
+        .coffins-table td {
             padding: 12px 8px;
             text-align: left;
         }
 
-        .user-table-header {
+        .coffins-table-header {
             background-color: #dcdcdc;
             color: #333333;
         }
 
-        .user-table tr:nth-child(even) {
+        .coffins-table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
         .btn {
             border-radius: 5px;
             padding: 5px 10px;
-            margin-right: 5px;
         }
 
         .btn-primary {
@@ -56,7 +55,7 @@
         }
 
         .full-width {
-            width: 80%;
+            width: 100%;
         }
     </style>
 </head>
@@ -70,53 +69,64 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
-                    <li><a href="{{ route('funerals.waiting') }}">Requests</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
                     <li><a href="{{ route('priests.index') }}">Priests</a></li>
                     <li><a href="{{ route('funerals.index') }}">Funerals</a></li>
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
                     <li><a href="{{ route('churches.index') }}">Churches</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
-
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>Users List</h1>
+        <h1>Funerals Waiting for Acceptance</h1>
     </section>
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user</a>
                 <table class="table mt-3 user-table full-width">
                     <thead>
-                        <tr class="user-table-header">
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Birthday</th>
-                            <th>City</th>
-                            <th>Role</th>
+                        <tr class="coffins-table-header">
+                            <th>ID</th>
+                            <th>Deceased Name</th>
+                            <th>Deceased Age</th>
+                            <th>User ID</th>
+                            <th>Coffin ID</th>
+                            <th>Church ID</th>
+                            <th>Priest ID</th>
+                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->surname }}</td>
-                                <td>{{ $user->birthday }}</td>
-                                <td>{{ $user->city }}</td>
-                                <td>{{ $user->role->name }}</td>
-                                <td>
-                                    <a href="{{ route('users.show', $user) }}" class="btn btn-info">Details</a>
-                                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
+                        @foreach ($funerals as $funeral)
+                        <tr>
+                            <td>{{ $funeral->id }}</td>
+                            <td>{{ $funeral->deceased_name }}</td>
+                            <td>{{ $funeral->deceased_age }}</td>
+                            <td>{{ $funeral->user_id }}</td>
+                            <td>{{ $funeral->coffin_id }}</td>
+                            <td>{{ $funeral->church_id }}</td>
+                            <td>{{ $funeral->priest_id }}</td>
+                            <td>{{ $funeral->price }}</td>
+                            <td>
+                                <!-- Przycisk Accept -->
+                                <form action="#" method="POST" style="display: inline-block;">
+                                    {{-- {{ route('funerals.accept', $funeral) }} --}}
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary btn-sm">Accept</button>
+                                </form>
+                                <!-- Przycisk Edit -->
+                                <a href="{{ route('funerals.edit', $funeral) }}" class="btn btn-info btn-sm">Edit</a>
+                                <!-- Przycisk Delete -->
+                                <form action="{{ route('funerals.destroy', $funeral) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this funeral?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

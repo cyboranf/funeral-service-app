@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>User Create</title>
+    <title>Funeral Create</title>
     <style>
         .user-create-container {
             width: 80%;
@@ -79,6 +79,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('about2') }}">About</a></li>
+                    <li><a href="{{ route('funerals.waiting') }}">Requests</a></li>
                     <li><a href="{{ route('users.index') }}">Users</a></li>
                     <li><a href="{{ route('priests.index') }}">Priests</a></li>
                     <li><a href="{{ route('coffins.index') }}">Coffins</a></li>
@@ -89,14 +90,14 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>User Create</h1>
+        <h1>Funeral Create</h1>
     </section>
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="user-create-container">
-                    <h1>Dodaj Pogrzeb</h1>
+                    <h1>Add Funeral</h1>
 
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -112,43 +113,43 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="deceased_name">Imię i nazwisko zmarłego:</label>
+                            <label for="deceased_name">Deceased First Name and LastName:</label>
                             <input type="text" name="deceased_name" id="deceased_name" class="form-control" value="{{ old('deceased_name') }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="deceased_age">Wiek zmarłego:</label>
+                            <label for="deceased_age">Deceased age:</label>
                             <input type="number" name="deceased_age" id="deceased_age" class="form-control" value="{{ old('deceased_age') }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="user_id">ID użytkownika:</label>
+                            <label for="user_id">ID of user:</label>
                             <input type="number" name="user_id" id="user_id" class="form-control" value="{{ old('user_id') }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="coffin_id">ID trumny:</label>
+                            <label for="coffin_id">ID of coffin:</label>
                             <input type="number" name="coffin_id" id="coffin_id" class="form-control" value="{{ old('coffin_id') }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="church_id">ID kościoła:</label>
+                            <label for="church_id">ID of church:</label>
                             <input type="number" name="church_id" id="church_id" class="form-control" value="{{ old('church_id') }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="priest_id">ID księdza:</label>
+                            <label for="priest_id">ID of priest:</label>
                             <input type="number" name="priest_id" id="priest_id" class="form-control" value="{{ old('priest_id') }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="price">Cena:</label>
+                            <label for="price">Price:</label>
                             <input type="number" name="price" id="price" class="form-control" value="{{ old('price') }}" required>
                         </div>
 
                         <div class="action-buttons">
-                            <button type="submit" class="btn btn-primary">Dodaj</button>
-                            <a href="{{ route('funerals.index') }}" class="btn btn-secondary">Anuluj</a>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <a href="{{ route('funerals.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>
