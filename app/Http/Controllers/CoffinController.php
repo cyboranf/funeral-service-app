@@ -25,7 +25,7 @@ class CoffinController extends Controller
             'material' => 'required',
             'color' => 'required',
             'size' => 'required',
-            'priceOfCoffins' => 'required',
+            'price' => 'required',
         ]);
 
         Coffin::create($data);
@@ -49,7 +49,7 @@ class CoffinController extends Controller
             'material' => 'required',
             'color' => 'required',
             'size' => 'required',
-            'priceOfCoffins' => 'required',
+            'price' => 'required',
         ]);
 
         $coffin->update($data);

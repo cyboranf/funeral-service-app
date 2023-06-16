@@ -33,7 +33,7 @@ class FuneralController extends Controller
             'coffin_id' => 'required',
             'church_id' => 'nullable',
             'priest_id' => 'nullable',
-            'priceOfFunerals' => 'required',
+            'price' => 'required',
         ]);
 
         Funeral::create($data);

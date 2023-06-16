@@ -119,8 +119,9 @@
                     </div>
                     <div class="form-group">
                         <label for="priceOfCoffins">Price:</label>
-                        <input type="text" name="priceOfCoffins" id="priceOfCoffins" class="form-control" value="{{ old('priceOfCoffins', $coffin->price) }}" required>
+                        <input type="text" name="price" id="price" class="form-control" value="{{ old('price', $coffin->price) }}" required>
                     </div>
+
                     <div class="action-buttons">
                         <button type="submit" class="btn btn-info">Edit</button>
                         <a href="{{ route('coffins.index') }}" class="btn btn-secondary">Cancel</a>

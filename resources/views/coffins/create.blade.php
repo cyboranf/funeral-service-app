@@ -112,8 +112,8 @@
                             <input type="text" name="size" id="size" class="form-control" value="{{ old('size') }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="priceOfCoffins">Price:</label>
-                            <input type="text" name="priceOfCoffins" id="priceOfCoffins" class="form-control" value="{{ old('priceOfCoffins') }}" required>
+                            <label for="price">Price:</label>
+                            <input type="text" name="price" id="price" class="form-control" value="{{ old('price') }}" required>
                         </div>
                         <div class="action-buttons">
                             <button type="submit" class="btn btn-primary">Add</button>
@@ -124,6 +124,7 @@
             </div>
         </div>
     </div>
+
 
     <script>
         var navLinks = document.getElementById("navLinks");
