@@ -12,6 +12,8 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        //TODO: dodac seeder uzytkowniko2 3 role
+
         foreach (range(1,10) as $index) {
             User::create([
                 'name' => $faker->name,
